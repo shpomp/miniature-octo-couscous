@@ -1,4 +1,3 @@
-import { marked } from "marked";
 import React, { useState } from "react";
 
 import "./App.css";
@@ -51,29 +50,42 @@ const Pad = [
   },
 ];
 
-export const App = () => {
-  const [volume, setVolume] = useState();
-  const [keyPress, setKeyPress] = useState("Q");
+const keysRegex = /[QWEASDZXC]/;
 
-  const playSound = (key, name, url) => () => {
-    setKeyPress(key);
+export const App = () => {
+  const [soundName, setSoundName] = useState("");
+
+  document.addEventListener("keyup", (e) => {
+    let key = e.key.toUpperCase();
+    if (e.key.toUpperCase().match(keysRegex)) {
+      const sound = document.getElementById(key);
+      setSoundName(sound.className.split(" ")[0]);
+      sound.play();
+    }
+  });
+
+  const playSound = (key, name) => () => {
+    setSoundName(name);
     const sound = document.getElementById(key);
-    console.log(sound);
-    sound.currentTime = 0;
     sound.play();
-    //sound.volume = Number(state.volume) * 0.01;
   };
 
   return (
     <div className="App">
-      <div>
+      <div id="drum-machine">
+        <div id="display">{soundName}</div>
         {Pad.map((button) => (
           <div
             className="drum-pad key-on"
+            id={button.name}
             key={button.key}
-            onClick={playSound(button.key, button.name, button.url)}
+            onClick={playSound(button.key, button.name)}
           >
-            <audio className="clip" id={button.key} src={button.url} />
+            <audio
+              className={`${button.name} clip`}
+              id={button.key}
+              src={button.url}
+            />
             {button.key}
           </div>
         ))}
