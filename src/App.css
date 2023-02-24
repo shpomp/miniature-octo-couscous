@@ -4,24 +4,39 @@ body {
 }
 
 .App {
+  color: #464646;
   text-align: center;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2rem;
   background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Drumhead_Coated_on_Snare_Drum.png/1200px-Drumhead_Coated_on_Snare_Drum.png)
     no-repeat center;
   background-size: 100vh;
 }
 
-textarea,
-.output {
-  min-height: 80vh;
-  width: 35vw;
-  margin: 10px;
+#drum-machine {
+  margin-top: -150px;
+}
+#display {
+  margin-top: 50px;
+  background-color: rgba(255, 253, 240, 0.666);
+  border-radius: 5px;
+  height: 1.5rem;
+  font-size: 1rem;
+}
+
+#keys {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-gap: 70px;
+}
+
+.drum-pad {
+  background-color: rgba(255, 253, 240, 0.666);
   padding: 15px;
-  background-color: rgb(238, 237, 228);
-  border: rgb(212, 210, 189) 3px solid;
-  border-radius: 2px;
+  border-radius: 50%;
 }

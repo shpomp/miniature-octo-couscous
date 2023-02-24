@@ -73,22 +73,24 @@ export const App = () => {
   return (
     <div className="App">
       <div id="drum-machine">
-        <div id="display">{soundName}</div>
-        {Pad.map((button) => (
-          <div
-            className="drum-pad key-on"
-            id={button.name}
-            key={button.key}
-            onClick={playSound(button.key, button.name)}
-          >
-            <audio
-              className={`${button.name} clip`}
-              id={button.key}
-              src={button.url}
-            />
-            {button.key}
-          </div>
-        ))}
+        <div id="keys">
+          {Pad.map((button) => (
+            <div
+              className="drum-pad key-on"
+              id={button.name}
+              key={button.key}
+              onClick={playSound(button.key, button.name)}
+            >
+              <audio
+                className={`${button.name} clip`}
+                id={button.key}
+                src={button.url}
+              />
+              {button.key}
+            </div>
+          ))}
+        </div>
+        <div id="display">{soundName.toLowerCase()}</div>
       </div>
     </div>
   );
